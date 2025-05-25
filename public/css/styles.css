@@ -1,3 +1,4 @@
+/* Reset & Basics */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -6,69 +7,108 @@
 
 body {
   font-family: 'Poppins', sans-serif;
-  background: linear-gradient(to right top, #0f2027, #203a43, #2c5364);
+  background: radial-gradient(circle at top left, #0f2027, #203a43, #2c5364);
   color: #f1f1f1;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  overflow-x: hidden;
+  position: relative;
 }
 
+/* Glassmorphic Glow Particles BG Layer */
+body::before {
+  content: '';
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  background: url('https://www.transparenttextures.com/patterns/stardust.png');
+  opacity: 0.03;
+  z-index: 0;
+  top: 0;
+  left: 0;
+}
+
+/* HEADER */
 header {
   background: rgba(255, 255, 255, 0.05);
-  padding: 30px 20px;
+  padding: 40px 20px 20px;
   text-align: center;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(15px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  z-index: 1;
+  position: relative;
 }
 
 header h1 {
-  font-size: 2rem;
-  margin-bottom: 10px;
-  color: #fff;
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+  background: linear-gradient(to right, #00c6ff, #0072ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 nav a {
   color: #f0f0f0;
-  margin: 0 12px;
+  margin: 0 15px;
   text-decoration: none;
   font-weight: 600;
-  position: relative;
-  padding-bottom: 5px;
+  font-size: 1rem;
   transition: all 0.3s ease;
+  position: relative;
 }
 
-nav a:hover {
-  color: #00c6ff;
-  border-bottom: 2px solid #00c6ff;
+nav a::after {
+  content: '';
+  display: block;
+  height: 2px;
+  width: 0%;
+  background-color: #00c6ff;
+  transition: 0.3s;
+  margin-top: 5px;
 }
 
+nav a:hover::after {
+  width: 100%;
+}
+
+/* MAIN */
 main.grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 30px;
-  padding: 40px;
-  flex-grow: 1;
+  padding: 50px 40px;
+  z-index: 1;
+  position: relative;
 }
 
+/* CARD */
 .card {
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 25px;
   padding: 30px;
   text-align: center;
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-  backdrop-filter: blur(10px);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: inset 1px 1px 2px rgba(255,255,255,0.1),
+              8px 8px 20px rgba(0,0,0,0.3);
+  backdrop-filter: blur(12px);
+  transition: all 0.4s ease;
+  animation: fadeInUp 1s ease forwards;
+  opacity: 0;
 }
 
+.card:nth-child(1) { animation-delay: 0.2s; }
+.card:nth-child(2) { animation-delay: 0.4s; }
+.card:nth-child(3) { animation-delay: 0.6s; }
+
 .card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 12px 40px rgba(0, 255, 255, 0.15);
 }
 
 .card h2 {
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   color: #ffffff;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 
 .card p {
@@ -77,6 +117,7 @@ main.grid {
   margin-bottom: 20px;
 }
 
+/* BUTTON */
 .btn {
   display: inline-block;
   padding: 12px 30px;
@@ -85,19 +126,35 @@ main.grid {
   color: #fff;
   text-decoration: none;
   font-weight: bold;
-  transition: background 0.3s ease, transform 0.3s ease;
+  transition: 0.4s ease;
+  box-shadow: 0 5px 15px rgba(0, 198, 255, 0.4);
 }
 
 .btn:hover {
-  background: linear-gradient(to right, #0072ff, #00c6ff);
   transform: scale(1.05);
+  box-shadow: 0 0 25px rgba(0, 198, 255, 0.8);
 }
 
+/* FOOTER */
 footer {
   text-align: center;
   padding: 20px;
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.04);
   color: #ccc;
   font-size: 0.9rem;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+  z-index: 1;
+}
+
+/* FADE-IN ANIMATION */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
