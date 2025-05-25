@@ -2,70 +2,37 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Fall Detection System - Home</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #4a90e2, #145b9d);
-      color: #f0f4f8;
-      margin: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      text-align: center;
-      padding: 20px;
-    }
-
-    h1 {
-      font-size: 3rem;
-      margin-bottom: 0.2em;
-      text-shadow: 0 2px 8px rgba(0,0,0,0.3);
-    }
-
-    p {
-      font-size: 1.2rem;
-      max-width: 600px;
-      margin-bottom: 2em;
-      line-height: 1.5;
-      text-shadow: 0 1px 3px rgba(0,0,0,0.3);
-    }
-
-    button {
-      background-color: #f0f4f8;
-      color: #145b9d;
-      border: none;
-      border-radius: 30px;
-      padding: 15px 40px;
-      font-size: 1.2rem;
-      cursor: pointer;
-      font-weight: 600;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.25);
-      transition: background-color 0.3s ease, color 0.3s ease;
-    }
-
-    button:hover {
-      background-color: #145b9d;
-      color: #f0f4f8;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.35);
-    }
-
-    footer {
-      position: fixed;
-      bottom: 15px;
-      font-size: 0.9rem;
-      opacity: 0.7;
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Safety Monitor System</title>
+  <link rel="stylesheet" href="/css/styles.css" />
 </head>
 <body>
-  <h1>Fall Detection System</h1>
-  <p>
-    Welcome to the Fall Detection Monitoring System. This project uses an embedded sensor device to detect falls by monitoring acceleration, and securely sends event data to a backend server. You can monitor real-time fall events, ensuring timely alerts and response.
-  </p>
-  <button onclick="location.href='/fall'">Go to Fall Detection Monitor</button>
-  <footer>© 2025 Fall Detection Project</footer>
+  <header>
+    <h1>Personal Safety Monitoring System</h1>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/fall">Fall Detection</a>
+      <a href="/location">Location Tracker</a>
+      <a href="/speed">Speed Monitor</a>
+    </nav>
+  </header>
+  <main class="grid">
+    <div class="card">
+      <h2>Fall Detection</h2>
+      <p>Monitor and log accidental falls using motion sensors.</p>
+      <a href="/fall" class="btn">View Monitor</a>
+    </div>
+    <div class="card">
+      <h2>Live Location Tracker</h2>
+      <p>Get your real-time location using the GPS module.</p>
+      <a href="/location" class="btn">Track Location</a>
+    </div>
+    <div class="card">
+      <h2>Speed Monitor</h2>
+      <p>Track speed and movement using accelerometer & gyroscope.</p>
+      <a href="/speed" class="btn">Monitor Speed</a>
+    </div>
+  </main>
+  <footer>© 2025 Safety Monitor Project</footer>
 </body>
 </html>

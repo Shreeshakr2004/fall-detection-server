@@ -43,6 +43,13 @@ app.get('/debug', (req, res) => {
   html += `</ul>`;
   res.send(html);
 });
+app.get('/location', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'location.html'));
+});
+
+app.get('/speed', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'speed.html'));
+});
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
