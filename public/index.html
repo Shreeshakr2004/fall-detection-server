@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Fall Detection Monitor</title>
+  <script>
+    async function fetchEvents() {
+      const res = await fetch('/api/fall-events');
+      const data = await res.json();
+      document.getElementById('log').innerHTML = data
+        .map(e => `<li>${e.time} - X: ${e.x}, Y: ${e.y}, Z: ${e.z}</li>`)
+        .join('');
+    }
+
+    setInterval(fetchEvents, 3000);
+  </script>
+</head>
+<body>
+  <h1>Fall Events Monitor</h1>
+  <ul id="log"></ul>
+</body>
+</html>
