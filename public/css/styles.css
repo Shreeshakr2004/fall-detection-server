@@ -22,7 +22,6 @@ body {
   --card-bg: rgba(255, 255, 255, 0.08);
   --text: #f1f1f1;
   --btn-bg: linear-gradient(to right, #00c6ff, #0072ff);
-  --footer-bg: rgba(255, 255, 255, 0.04);
   --nav-hover: #00c6ff;
 }
 
@@ -31,7 +30,6 @@ body.light {
   --card-bg: rgba(0, 0, 0, 0.05);
   --text: #1a1a1a;
   --btn-bg: linear-gradient(to right, #0072ff, #00c6ff);
-  --footer-bg: #e1eaff;
   --nav-hover: #0072ff;
 }
 
@@ -51,7 +49,7 @@ body::before {
 /* === HEADER === */
 header {
   background: rgba(255, 255, 255, 0.05);
-  padding: 40px 20px 20px;
+  padding: 30px 20px 15px;
   text-align: center;
   backdrop-filter: blur(15px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -67,13 +65,17 @@ header h1 {
   -webkit-text-fill-color: transparent;
 }
 
+/* === NAVBAR (HORIZONTAL) === */
 nav {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
   margin-bottom: 10px;
 }
 
 nav a {
   color: var(--text);
-  margin: 0 15px;
   text-decoration: none;
   font-weight: 600;
   font-size: 1rem;
@@ -180,18 +182,6 @@ main.grid {
   box-shadow: 0 0 25px rgba(0, 198, 255, 0.8);
 }
 
-/* === FOOTER === */
-footer {
-  text-align: center;
-  padding: 20px;
-  background: var(--footer-bg);
-  color: #aaa;
-  font-size: 0.9rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  z-index: 1;
-  position: relative;
-}
-
 /* === ANIMATIONS === */
 @keyframes fadeInUp {
   0% {
@@ -209,8 +199,16 @@ footer {
   header h1 {
     font-size: 1.8rem;
   }
-  nav a {
-    display: block;
-    margin: 8px 0;
+
+  nav {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .toggle-theme {
+    top: 10px;
+    right: 10px;
+    padding: 6px 14px;
+    font-size: 0.8rem;
   }
 }
