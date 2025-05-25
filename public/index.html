@@ -4,11 +4,15 @@
   <title>Fall Detection Monitor</title>
   <script>
     async function fetchEvents() {
-      const res = await fetch('/api/fall-events');
-      const data = await res.json();
-      document.getElementById('log').innerHTML = data
-        .map(e => `<li>${e.time} - X: ${e.x}, Y: ${e.y}, Z: ${e.z}</li>`)
-        .join('');
+      try {
+        const res = await fetch('/api/fall-events');
+        const data = await res.json();
+        document.getElementById('log').innerHTML = data
+          .map(e => `<li>${e.timestamp} - ${e.event}</li>`)
+          .join('');
+      } catch (err) {
+        console.error('Failed to fetch events:', err);
+      }
     }
 
     setInterval(fetchEvents, 3000);
