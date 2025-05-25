@@ -11,7 +11,7 @@
           .map(e => `<li>${e.timestamp} - ${e.event}</li>`)
           .join('');
       } catch (err) {
-        console.error('Failed to fetch events:', err);
+        console.error('❌ Failed to fetch events:', err);
       }
     }
 

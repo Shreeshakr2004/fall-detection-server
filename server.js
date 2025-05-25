@@ -8,12 +8,12 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 
-// Serve static files from "public" folder
+// Serve HTML from /public
 app.use(express.static(path.join(__dirname, 'public')));
 
-const fallEvents = []; // Stores all fall event data
+const fallEvents = [];
 
-// POST route to receive fall event data from Arduino
+// POST route
 app.post('/api/fall', (req, res) => {
   const data = req.body;
   if (!data || !data.event || !data.timestamp) {
@@ -21,19 +21,18 @@ app.post('/api/fall', (req, res) => {
   }
 
   fallEvents.push(data);
-  console.log('Received fall data:', data);
+  console.log('✅ Received fall data:', data);
   res.status(200).send('Fall event recorded');
 });
 
-// GET route to fetch all fall events
+// GET all events
 app.get('/api/fall-events', (req, res) => {
   res.json(fallEvents);
 });
 
-// Optional: Display events in HTML if user opens root URL
+// Home debug view
 app.get('/', (req, res) => {
-  let html = `<h1>Fall Events Log</h1>`;
-  html += `<ul>`;
+  let html = `<h1>Fall Events Log</h1><ul>`;
   fallEvents.forEach(event => {
     html += `<li><strong>Time:</strong> ${event.timestamp} | <strong>Event:</strong> ${event.event}</li>`;
   });
@@ -41,7 +40,6 @@ app.get('/', (req, res) => {
   res.send(html);
 });
 
-// Start the server
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
