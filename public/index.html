@@ -16,6 +16,8 @@
       <a href="/location">Location Tracker</a>
       <a href="/speed">Speed Monitor</a>
     </nav>
+    <button class="toggle-theme" onclick="toggleTheme()">🌙 Toggle Theme</button>
+
   </header>
   <main class="grid">
     <div class="card">
@@ -37,3 +39,8 @@
   <footer>© 2025 Safety Monitor Project — All rights reserved</footer>
 </body>
 </html>
+<script>
+  function toggleTheme() {
+    document.body.classList.toggle('light');
+  }
+</script>

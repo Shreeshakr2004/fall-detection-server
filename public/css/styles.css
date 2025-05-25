@@ -1,22 +1,41 @@
-/* Reset & Basics */
+/* === RESET & BASE === */
 * {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 body {
   font-family: 'Poppins', sans-serif;
-  background: radial-gradient(circle at top left, #0f2027, #203a43, #2c5364);
-  color: #f1f1f1;
+  background: var(--bg);
+  color: var(--text);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   overflow-x: hidden;
+  transition: background 0.3s ease, color 0.3s ease;
   position: relative;
 }
 
-/* Glassmorphic Glow Particles BG Layer */
+:root {
+  --bg: radial-gradient(circle at top left, #0f2027, #203a43, #2c5364);
+  --card-bg: rgba(255, 255, 255, 0.08);
+  --text: #f1f1f1;
+  --btn-bg: linear-gradient(to right, #00c6ff, #0072ff);
+  --footer-bg: rgba(255, 255, 255, 0.04);
+  --nav-hover: #00c6ff;
+}
+
+body.light {
+  --bg: #f5f7fa;
+  --card-bg: rgba(0, 0, 0, 0.05);
+  --text: #1a1a1a;
+  --btn-bg: linear-gradient(to right, #0072ff, #00c6ff);
+  --footer-bg: #e1eaff;
+  --nav-hover: #0072ff;
+}
+
+/* === PARTICLE BACKGROUND === */
 body::before {
   content: '';
   position: absolute;
@@ -29,32 +48,36 @@ body::before {
   left: 0;
 }
 
-/* HEADER */
+/* === HEADER === */
 header {
   background: rgba(255, 255, 255, 0.05);
   padding: 40px 20px 20px;
   text-align: center;
   backdrop-filter: blur(15px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  z-index: 1;
+  z-index: 2;
   position: relative;
 }
 
 header h1 {
   font-size: 2.5rem;
   margin-bottom: 15px;
-  background: linear-gradient(to right, #00c6ff, #0072ff);
+  background: var(--btn-bg);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
+nav {
+  margin-bottom: 10px;
+}
+
 nav a {
-  color: #f0f0f0;
+  color: var(--text);
   margin: 0 15px;
   text-decoration: none;
   font-weight: 600;
   font-size: 1rem;
-  transition: all 0.3s ease;
+  transition: 0.3s;
   position: relative;
 }
 
@@ -63,7 +86,7 @@ nav a::after {
   display: block;
   height: 2px;
   width: 0%;
-  background-color: #00c6ff;
+  background-color: var(--nav-hover);
   transition: 0.3s;
   margin-top: 5px;
 }
@@ -72,7 +95,29 @@ nav a:hover::after {
   width: 100%;
 }
 
-/* MAIN */
+/* === DARK/LIGHT TOGGLE === */
+.toggle-theme {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  padding: 8px 16px;
+  background: var(--btn-bg);
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  z-index: 10;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  transition: transform 0.3s;
+}
+
+.toggle-theme:hover {
+  transform: scale(1.05);
+}
+
+/* === MAIN GRID === */
 main.grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -82,17 +127,17 @@ main.grid {
   position: relative;
 }
 
-/* CARD */
+/* === CARD STYLE === */
 .card {
-  background: rgba(255, 255, 255, 0.08);
+  background: var(--card-bg);
   border-radius: 25px;
   padding: 30px;
   text-align: center;
+  backdrop-filter: blur(12px);
   box-shadow: inset 1px 1px 2px rgba(255,255,255,0.1),
               8px 8px 20px rgba(0,0,0,0.3);
-  backdrop-filter: blur(12px);
-  transition: all 0.4s ease;
-  animation: fadeInUp 1s ease forwards;
+  transition: transform 0.4s, box-shadow 0.4s;
+  animation: fadeInUp 0.8s ease forwards;
   opacity: 0;
 }
 
@@ -102,27 +147,27 @@ main.grid {
 
 .card:hover {
   transform: translateY(-10px) scale(1.03);
-  box-shadow: 0 12px 40px rgba(0, 255, 255, 0.15);
+  box-shadow: 0 12px 40px rgba(0, 198, 255, 0.15);
 }
 
 .card h2 {
   font-size: 1.6rem;
-  color: #ffffff;
   margin-bottom: 10px;
+  color: var(--text);
 }
 
 .card p {
   font-size: 1rem;
-  color: #dddddd;
+  color: var(--text);
   margin-bottom: 20px;
 }
 
-/* BUTTON */
+/* === BUTTON === */
 .btn {
   display: inline-block;
   padding: 12px 30px;
   border-radius: 30px;
-  background: linear-gradient(to right, #00c6ff, #0072ff);
+  background: var(--btn-bg);
   color: #fff;
   text-decoration: none;
   font-weight: bold;
@@ -135,19 +180,19 @@ main.grid {
   box-shadow: 0 0 25px rgba(0, 198, 255, 0.8);
 }
 
-/* FOOTER */
+/* === FOOTER === */
 footer {
   text-align: center;
   padding: 20px;
-  background: rgba(255, 255, 255, 0.04);
-  color: #ccc;
+  background: var(--footer-bg);
+  color: #aaa;
   font-size: 0.9rem;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
-  position: relative;
   z-index: 1;
+  position: relative;
 }
 
-/* FADE-IN ANIMATION */
+/* === ANIMATIONS === */
 @keyframes fadeInUp {
   0% {
     opacity: 0;
@@ -156,5 +201,16 @@ footer {
   100% {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 600px) {
+  header h1 {
+    font-size: 1.8rem;
+  }
+  nav a {
+    display: block;
+    margin: 8px 0;
   }
 }
